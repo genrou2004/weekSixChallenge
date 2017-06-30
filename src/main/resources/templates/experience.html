@@ -3,51 +3,57 @@
 <head th:replace="base::head">
     <meta charset="UTF-8" />
     <title>Experience</title>
-</head>
+
+        <title>Work Experience Form</title>
+    </head>
 <body>
-<nav class="navbar navbar-default" th:replace="base::nav"></nav>
 
 <div class="container">
-    <div class="jumbotron">
+    <nav th:replace="base::nav"></nav>
 
-        <div class="container">
-            <h3>Build Your Work Experience</h3>
+
+            <h3>Work Experience</h3>
             <form th:action="@{/experience}" th:object="${experience}" method="post">
                 <div class="col-xs-4">
-                    <label for="tittle">Title</label>
-                    <input type="text" name="title" th:field="*{title}" class="form-control" id="tittle" placeholder="company Name" />
+                    <input type="text" name="title" th:field="*{title}" class="form-control" id="tittle" placeholder="Title" />
                 </div>
                 <div class="col-xs-4">
-                    <label for="company">Company</label>
                     <input type="text" name="company" th:field="*{companyName}" class="form-control" id="company" placeholder="company Name" />
                 </div>
                 <div class="col-xs-4">
-                    <label for="location">Location</label>
-                    <input type="text" th:field="*{location}" class="form-control" id="location" placeholder="position" />
+
+                    <input type="text" th:field="*{location}" class="form-control" id="location" placeholder="Location" />
                 </div>
                 <div class="col-xs-4">
-                    <label for="from">From</label>
-                    <input type="text" th:field="*{from}" class="form-control" id="from"  />
+
+                    <input type="text" th:field="*{from}" class="form-control" id="from" placeholder="From" />
                 </div>
                 <div class="col-xs-4">
-                    <label for="to">To</label>
-                    <input type="text" th:field="*{to}" class="form-control" id="to" />
+
+                    <input type="text" th:field="*{to}" class="form-control" id="to" placeholder="To"/>
                 </div>
                 <div class="col-xs-4">
-                    <label for="description">Description</label>
+
                     <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="description" />
                 </div>
 
-                <button type="submit" class="btn btn-default">Add More Experience</button>
+                <button type="submit" class="btn btn-default">Add Experience</button>
             </form>
             <div class="col-xs-4">
-                <form action="/skill">
+                <form action="/skills">
                     <button type="submit" class="btn btn-default">Goto Skill</button>
                 </form>
             </div>
 
-        </div>
+            <div class="col-xs-4">
+                <form action="/">
+                    <button type="submit" class="btn btn-default">Goto home</button>
+                </form>
+            </div>
     </div>
-</div>
 </body>
 </html>
+
+
+
+

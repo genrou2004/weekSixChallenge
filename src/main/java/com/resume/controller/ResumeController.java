@@ -36,17 +36,14 @@ public class ResumeController {
     private SkillsRepository skillsRepository;
 
 
-    @RequestMapping("/display")
+    @RequestMapping("/displayProfile")
     public String displayProfile(Model model){
-        Person person = new Person();
-       String personFirstName = person.getFirstName();
-        model.addAttribute("persons", personRepository.findByFirstName(personFirstName));
-        return "display";
+        model.addAttribute("persons", personRepository.findAll());
+        return "displayProfile";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
-
         model.addAttribute("person", new Person());
         return "signup";
     }
@@ -60,7 +57,7 @@ public class ResumeController {
         User user = new User();
         String email = person.getEmail();
         personRepository.save(person);
-        return "redirect:/display";
+        return "redirect:/displayProfile";
     }
 
     @RequestMapping(value = "/education", method = RequestMethod.GET)
@@ -76,8 +73,26 @@ public class ResumeController {
             return "education";
         }
         educationRepository.save(education);
-        return "redirect:/display";
+        return "redirect:/displayProfile";
     }
+
+
+    @RequestMapping(value = "/experience", method = RequestMethod.GET)
+    public String getExperienceForm(Model model) {
+
+        model.addAttribute("experience", new Experience());
+        return "experience";
+    }
+
+    @RequestMapping(value = "/experience", method = RequestMethod.POST)
+    public String processExperienceForm(@ModelAttribute Experience experience, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "experience";
+        }
+        experienceRepository.save(experience);
+        return "experience";
+    }
+
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String SearchByName(Model model){
@@ -88,14 +103,14 @@ public class ResumeController {
     public String processSearch(@ModelAttribute Person person, Model model){
         String firstName = person.getFirstName();
         Iterable<Person> personIterable = personRepository.findByFirstName(firstName);
-        model.addAttribute("personIterable", personIterable);
+        model.addAttribute("persons", personIterable);
         return "searchResult";
     }
     @RequestMapping(value = "/searchByCompany", method = RequestMethod.GET)
     public String processSearch(@ModelAttribute Experience experience, Model model){
         String companyName = experience.getCompanyName();
         Iterable<Experience> experienceIterable = experienceRepository.findByCompanyName(companyName);
-        model.addAttribute("experienceIterable", experienceIterable);
-        return "display";
+        model.addAttribute("experience", experienceIterable);
+        return "displayProfile";
     }
 }

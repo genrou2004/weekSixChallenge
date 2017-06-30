@@ -9,14 +9,14 @@
     <div class="jumbotron">
         <nav class="navbar navbar-default" th:replace="base::nav"></nav>
         <form th:action="@{/search}" th:object="${person}"  method="post" >
-            <input type="text" th:field="*{firstName}" name="firstName" placeholder="By Name"/>
+            <input type="text" th:field="*{firstName}" name="firstName" placeholder="by first name"/>
             <button type="submit">Search</button>
         </form>
 
-        <form th:action="@{/searchAll}" th:object="${person}"  method="get" >
-            <input type="text" th:field="*{email}" name="email" placeholder="By Email"/>
+        <!--<form th:action="@{/searchByCompany}" th:object="${experience}"  method="get" >
+            <input type="text" th:field="*{companyName}" name="company" placeholder="by company Name"/>
             <button type="submit">Search</button>
-        </form>
+        </form>-->
 
     </div>
 </div>
